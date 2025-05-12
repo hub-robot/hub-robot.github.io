@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="HuB: Learning Extreme Humanoid Balance">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HuB</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <script>
+    function updateComparativeVideos() {
+      var task = document.getElementById("comparative-menu-tasks").value;
+      console.log("Comparative", task)
+
+      let path1, path2;
+
+      switch (task) {
+          case 'swallow':
+              path1 = `media/tasks/swallow_compressed.mp4`
+              path2 = `media/baseline/swallow_compressed.mov`;
+              break;
+          case 'bruce':
+              path1 = `media/tasks/bruce_compressed.mp4`;
+              path2 = `media/baseline/bruce_compressed.mov`;
+              break;
+          case 'nezha':
+              path1 = `media/tasks/nezha_compressed.mov`;
+              path2 = `media/baseline/nezha_compressed.mov`;
+              break;
+          case 'singleleg':
+              path1 = `media/tasks/singleleg_compressed.mp4`;
+              path2 = `media/baseline/singleleg_compressed.mov`;
+              break;
+          case 'squat':
+              path1 = `media/tasks/squat_tsinghua_compressed.mp4`;
+              path2 = `media/baseline/squat_compressed.mov`;
+              break;
+          default:
+              path1 = ``;
+              path2 = ``;
+      }
+  
+      // Update video sources based on the selected task
+      document.getElementById("comparative-video1").src = path1
+      document.getElementById("comparative-video2").src = path2
+
+      // Reload videos
+      document.getElementById("comparative-video1").load();
+      document.getElementById("comparative-video2").load();
+  }
+
+
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body onload="updateComparativeVideos();">
+
+
+
+<section class="hero is-link is-fullheight video" style="overflow: hidden; position:relative;">
+  <div class="hero-video" style="height: 100%; width: 177.77777778vh; min-width: 100%;min-height: 56.25vw;">
+    <video playsinline autoplay muted loop>
+      <source src=" ./media/merge/teaser_compressed.mov" type="video/mp4">
+    </video>
+  </div>
+  <div class="overlay"></div>
+  <div class="hero-head is-hidden-mobile">
+    <header class="navbar">
+      <div class="container is-size-5">
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item pl-4 pr-4" href="./paper/HuB.pdf" target="_blank">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/pdf.svg" alt="PDF" />
+              </span>
+              <span>Paper</span>
+            </a>
+            <a class="navbar-item  pl-4 pr-4" href=""  target="_blank"> 
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/arxiv.svg" alt="ArXiv" />
+              </span>
+              <span>arXiv</span> </a>
+            <a href="" class="navbar-item pl-4 pr-4"  target="_blank">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/youtube.svg" alt="Youtube" style="width: 24px; height: 24px;" />
+              </span>
+              <span>Video</span>
+            </a>
+              <a href="" class="navbar-item pl-4 pr-4"  target="_blank">
+                <span class="icon" style="font-size: 1.5rem; margin-right: 5px;">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+ 
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 12rem;">
+        HuB
+      </h1>
+      <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 4rem;">
+        Learning Extreme Humanoid Balance
+      </h1>
+      <div class="column has-text-centered is-hidden-tablet">
+        <div class="publication-links">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">HuB: Learning Extreme Humanoid Balance</h1>
+          <!-- <div class="column has-text-centered"> -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a target="_blank" href="https://tongzhangthu.github.io/">Tong Zhang</a><sup>1, 2, 3*</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://github.com/ZhengBryan">Boyuan Zheng</a><sup>4*</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://scholar.google.com/citations?user=I0HLZAwAAAAJ&hl=en">Ruiqian Nai</a><sup>1, 2, 3</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://yingdong-hu.github.io/">Yingdong Hu</a><sup>1, 2, 3</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://wangyenjen.github.io/">Yen-Jen Wang</a><sup>5</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://jc043.github.io/">Geng Chen</a><sup>6</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://fanqi-lin.github.io/">Fanqi Lin</a><sup>1,2,3</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://github.com/Cata1ysttt">Jiongye Li</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://chuye03.github.io/">Chuye Hong</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://hybrid-robotics.berkeley.edu/koushil/">Koushil Sreenath</a><sup>5</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://yang-gao.weebly.com/">Yang Gao</a><sup>1, 2, 3</sup>
+              </span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Tsinghua University,</span>
+              <span class="author-block"><sup>2</sup>Shanghai Qi Zhi Institute,</span>
+              <span class="author-block"><sup>3</sup>Shanghai Artificial Intelligence Laboratory</span>
+              <span class="author-block"><sup>4</sup>Tongji University</span>
+              <span class="author-block"><sup>5</sup>UC Berkeley</span>
+              <span class="author-block"><sup>6</sup>UC San Diego</span>
+            </div>
+            <div class="is-size-6 publication-authors"> *Equal Contribution </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="./paper/HuB.pdf"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- arXiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href=""
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a target="_blank" href=""
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a target="_blank" href=""
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming Soon)</span>
+                    </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </span>
+                    <span>Summary</span>
+                  </a>
+                </span>
+
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom: 0">
+  <div class="container">
+    <div id="method_video" class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds no-bottom-padding">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+          <iframe 
+            src="https://www.youtube.com/embed/" 
+            title="YouTube video player" 
+            frameborder="0" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid #bbb; border-radius: 10px;" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 0px;">Extreme Humanoid Balance</h2>
+        <p class="has-text-centered is-size-5" style="margin-bottom: 30px; padding-bottom: 0px;">
+          (Played at the original speed)
+        </p>
+        <div class="columns" style="margin-bottom: 50px;">
+          <div class="column">
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Swallow Balance</h3>
+            <video autoplay muted loop playsinline controls src="./media/tasks/swallow_compressed.mp4" width="100%" style="border-radius:10px;"></video>
+          </div>
+          <div class="column">
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Bruce Lee's Kick</h3>
+            <video autoplay muted loop playsinline controls src="./media/tasks/bruce_compressed.mp4" width="100%" style="border-radius:10px;"></video>
+          </div>
+        </div>
+
+        <div class="columns" style="margin-bottom: 50px;">
+          <div class="column">
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Ne Zha Pose</h3>
+            <video autoplay muted loop playsinline controls src="./media/tasks/nezha_compressed.mov" width="100%" style="border-radius:10px;"></video>
+          </div>
+          <div class="column">
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">High Knees</h3>
+            <video autoplay muted loop playsinline controls src="./media/tasks/highknees_compressed.mp4" width="100%" style="border-radius:10px;"></video>
+          </div>
+        </div>
+
+        <div class="columns" style="margin-bottom: 20px;">
+          <div class="column">
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Single-Leg Stand</h3>
+            <video autoplay muted loop playsinline controls src="./media/tasks/singleleg_compressed.mp4" width="100%" style="border-radius:10px;"></video>
+          </div>
+          <div class="column">
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Deep Squat</h3>
+            <video autoplay muted loop playsinline controls src="./media/tasks/squat_tsinghua_compressed.mp4" width="100%" style="border-radius:10px;"></video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 0px;">External Perturbations</h2>
+        <p class="has-text-centered is-size-5" style="margin-bottom: 30px; padding-bottom: 0px;">
+          (Played at the original speed)
+        </p>
+        <div class="columns is-centered" style="margin-bottom: 50px;">
+          <div class="column is-half">
+          <!-- <div class="column is-full" style="max-width: 800px;"> -->
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Swallow Balance</h3>
+            <video autoplay muted loop playsinline controls src="./media/disturbance/swallow_compressed.mov" width="100%" style="border-radius:10px;"></video>
+          </div>
+        </div>
+
+        <div class="columns" style="margin-bottom: 50px;">
+          <div class="column">
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Bruce Lee's Kick</h3>
+            <video autoplay muted loop playsinline controls src="./media/disturbance/bruce_compressed.mp4" width="100%" style="border-radius:10px;"></video>
+          </div>
+          <div class="column">
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Ne Zha Pose</h3>
+            <video autoplay muted loop playsinline controls src="./media/disturbance/nezha_compressed.mov" width="100%" style="border-radius:10px;"></video>
+          </div>
+        </div>
+
+        <div class="columns" style="margin-bottom: 20px;">
+          <div class="column">
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Single-Leg Stand</h3>
+            <video autoplay muted loop playsinline controls src="./media/disturbance/singleleg_compressed.mp4" width="100%" style="border-radius:10px;"></video>
+          </div>
+          <div class="column">
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Deep Squat</h3>
+            <video autoplay muted loop playsinline controls src="./media/disturbance/squat_compressed.mp4" width="100%" style="border-radius:10px;"></video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 0px;">Long-Horizon Execution</h2>
+        <p class="has-text-centered is-size-5" style="margin-bottom: 30px; padding-bottom: 0px;">
+          (Played at the original speed)
+        </p>
+        <div class="columns is-centered" style="margin-bottom: 10px;">
+          <div class="column is-half">
+            <h3 class="title is-3" style="text-align: center; margin-bottom: 10px; font-size: x-large;">Bruce Lee's Kick (10+ consecutive executions)</h3>
+            <video autoplay muted loop playsinline controls src="./media/long_horizon/bruce_compressed.mov" width="100%" style="border-radius:10px;"></video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container">
+    <!-- Title -->
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-2 has-text-centered" style="padding-bottom: 0px;">Comparative Results</h2>
+        <p class="has-text-centered is-size-5" style="margin-bottom: 20px; padding-bottom: 0px;">
+          (Played at the original speed)
+        </p>
+      </div>
+    </div>
+
+    <!-- Task Menu -->
+    <div class="has-text-centered" style="margin-bottom: 20px;">
+      <b>Evaluated on task</b>
+      <div class="select is-small">
+        <select id="comparative-menu-tasks" onchange="updateComparativeVideos()">
+          <option value="swallow">Swallow Balance</option>
+          <option value="bruce">Bruce Lee's Kick</option>
+          <option value="nezha">Ne Zha Pose</option>
+          <option value="singleleg">Single-Leg Stand</option>
+          <option value="squat">Deep Squat</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Two side-by-side videos with spacing and rounded corners -->
+    <div class="columns is-variable is-4" style="margin-bottom: 50px;">
+      <!-- HuB -->
+      <div class="column has-text-centered">
+        <h3 class="title is-5">HuB</h3>
+        <!-- <h3 class="title is-6" style="visibility: hidden;">(placeholder)</h3> -->
+        <video id="comparative-video1" controls muted autoplay loop playsinline controlsList="nodownload"
+               style="width: 100%; border-radius: 10px;">
+          <source src="media/tasks/swallow_compressed.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- OmniH2O -->
+      <div class="column has-text-centered">
+        <h3 class="title is-5">OmniH2O</h3>
+        <!-- <h3 class="title is-6" style="color: red;">(trained from scratch using the same balance data and keypoint targets as HuB)</h3> -->
+        <video id="comparative-video2" controls muted autoplay loop playsinline controlsList="nodownload"
+               style="width: 100%; border-radius: 10px;">
+          <source src="media/baseline/swallow_compressed.mov" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The human body demonstrates exceptional motor capabilities—such as standing steadily on one 
+            foot or performing a high kick with the leg raised over 1.5 meters—both requiring precise balance control. 
+            While recent research on humanoid control has leveraged reinforcement learning to track human motions 
+            for skill acquisition, applying this paradigm to balance-intensive tasks remains challenging. 
+          </p>
+          <p> 
+            In this work, we identify three key obstacles: instability from reference motion errors, 
+            learning difficulties due to morphological mismatch, and the sim-to-real gap caused by sensor noise and unmodeled dynamics. 
+            To address these challenges, we propose <b>HuB</b> (<b>Hu</b>manoid <b>B</b>alance), 
+            a unified framework that integrates <em>reference motion refinement</em>, <em>balance-aware policy learning</em>, 
+            and <em>sim-to-real robustness training</em>, with each component targeting a specific challenge. 
+          </p>
+          <p> 
+            We validate our approach on the Unitree G1 humanoid robot across challenging quasi-static balance tasks, 
+            including extreme single-legged poses such as <code style="color: black; background-color: transparent;">Swallow Balance</code> and <code style="color: black; background-color: transparent;">Bruce Lee's Kick</code>. 
+            Our policy remains stable even under strong physical disturbances—such as a forceful soccer 
+            strike—while baseline methods consistently fail to complete these tasks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="rows">
+
+    <div class="rows is-centered ">
+      <div class="row is-full-width">
+        <h2 class="title is-3"><span class="dperact">Learning Framework for Extreme Humanoid Balance</span></h2>
+
+        <img src="media/figures/method.jpeg" class="interpolation-image" 
+         alt="Interpolate start reference image." />
+          <p>
+            <b>HuB Overview.</b> To tackle the challenges of extreme balance tasks on humanoids, 
+            HuB integrates three components: 
+            (a) a motion refinement process that improves the quality and feasibility of reference motions; 
+            (b) a balance-aware policy learning strategy that enables stable execution of challenging balance motions; 
+            and (c) a robustness training mechanism to improve sim-to-real consistency and deployment stability.
+          </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <p>
+            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> and <a href="https://umi-on-legs.github.io/">UMI on Legs</a>. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
